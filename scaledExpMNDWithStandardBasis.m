@@ -1,4 +1,4 @@
-function [scaledAvg] = scaledExpectedNormDeviation(m, p, numSamples)
+function [scaledAvg] = scaledExpMNDWithStandardBasis(m, p, numSamples)
 % approximate the expected norm deviation and divide by complexity
     n = floor(2/p);
     avg = expectedNormDeviation(m, n, p, numSamples);
