@@ -21,7 +21,7 @@ function [max] = maxNormDeviation(m, n, p)
 % deviation for each standard basis vector in R^n
     max = 0;
     for i = 1:n
-        bern = scaledBernoullis(m, p);
+        bern = scaledBernoullis(m, 1, p);
         normDeviation = abs(norm(bern) - sqrt(m));
         if normDeviation > max
             max = normDeviation;
