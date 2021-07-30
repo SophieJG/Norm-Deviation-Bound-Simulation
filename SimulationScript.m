@@ -12,6 +12,8 @@ p = linspace(RIGHT_ENDPOINT/NUM_POINTS, RIGHT_ENDPOINT, NUM_POINTS);
 KFn = @(x) 1/sqrt(x*log(1+1/x));
 KsqrtlogKFn = @(x) KFn(x) * sqrt(log(KFn(x)));
 
+K = arrayfun(KFn, p);
+
 % compute K*sqrt(log K) for each value of p
 KsqrtlogK = arrayfun(KsqrtlogKFn, p);
 
@@ -24,14 +26,4 @@ deviation = arrayfun(deviationFn, p);
 prefixEndpoint =  strrep(string(RIGHT_ENDPOINT), '.', ',');
 prefix = NUM_POINTS + "_pts_" + SAMPLES + "_samples_" + prefixEndpoint + "_endpoint";
 
-loglog(p, KsqrtlogK, "b", p, deviation, "g");
-xlabel('p');
-legend('c x K(p) x sqrt(log K(p))','Expected max norm deviation / complexity');
-savefig(prefix + "_p_loglog.fig");
-
-K = arrayfun(KFn, p);
-
-loglog(K, KsqrtlogK, "b", K, deviation, "g");
-xlabel('K');
-legend('c x K x sqrt(log K)','Expected max norm deviation / complexity');
-savefig(prefix + "_K_loglog.fig");
+generatePlots(p, K, KsqrtlogK, deviation, prefix, true);
