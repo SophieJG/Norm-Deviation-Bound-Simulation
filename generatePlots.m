@@ -5,22 +5,22 @@ function generatePlots(p, K, KsqrtlogK, deviation, fileName, loglogPlot)
     if loglogPlot
         loglog(p, KsqrtlogK, "b", p, deviation, "g");
         xlabel('log p');
-        legend('log(c x K(p) x sqrt(log K(p)))','log(MND(p) / complexity)');
+        legend('log(c x K(p) x sqrt(log K(p)))','log(MND(p))');
         savefig(prefix + "_p_loglog.fig");
         
         loglog(K, KsqrtlogK, "b", K, deviation, "g");
         xlabel('log K');
-        legend('log (c x K x sqrt(log K))','log(MND(K) / complexity)');
+        legend('log (c x K x sqrt(log K))','log(MND(K))');
         savefig(prefix + "_K_loglog.fig");
     else
         plot(p, KsqrtlogK, "b", p, deviation, "g");
         xlabel('p');
-        legend('c x K(p) x sqrt(log K(p))','MND(p) / complexity');
+        legend('c x K(p) x sqrt(log K(p))','MND(p)');
         savefig(prefix + "_p.fig");
         
         plot(K, KsqrtlogK, "b", K, deviation, "g");
         xlabel('K');
-        legend('c x K x sqrt(log K)','MND(K) / complexity');
+        legend('c x K x sqrt(log K)','MND(K)');
         savefig(prefix + "_K.fig");
     end
 end
