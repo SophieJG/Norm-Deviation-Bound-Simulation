@@ -19,7 +19,7 @@ function generatePlots(p, K, KsqrtlogK, deviation, fileName, loglogPlot)
         savefig(prefix + "_p.fig");
         
         plot(K, KsqrtlogK, "b", K, deviation, "g");
-        xlabel('log K');
+        xlabel('K');
         legend('c x K x sqrt(log K)','MND(K) / complexity');
         savefig(prefix + "_K.fig");
     end
