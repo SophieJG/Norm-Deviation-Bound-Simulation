@@ -1,6 +1,6 @@
-function [scaledBernoulliMatrix] = scaledBernoullis(m, p)
+function [scaledBernoulliMatrix] = scaledBernoullis(m,n, p)
 % generate an m x n matrix of scaled Bernoulli(p) random variables
-    scaledBernoulliMatrix = arrayfun(@(u) singleBernoulli(u, p), rand(m,1));
+    scaledBernoulliMatrix = arrayfun(@(u) singleBernoulli(u, p), rand(m,n));
 end
 
 function [b] = singleBernoulli(u, p)

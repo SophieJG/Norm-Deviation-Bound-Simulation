@@ -1,4 +1,4 @@
-function [scaledAvg] = scaledExpectedNormDeviation(m, p, numSamples)
+function [scaledAvg] = scaledExpMNDWithStandardBasis(m, p, numSamples)
 % approximate the expected norm deviation and divide by complexity
     n = floor(2/p);
     avg = expectedNormDeviation(m, n, p, numSamples);
@@ -21,7 +21,7 @@ function [max] = maxNormDeviation(m, n, p)
 % deviation for each standard basis vector in R^n
     max = 0;
     for i = 1:n
-        bern = scaledBernoullis(m, p);
+        bern = scaledBernoullis(m, 1, p);
         normDeviation = abs(norm(bern) - sqrt(m));
         if normDeviation > max
             max = normDeviation;
