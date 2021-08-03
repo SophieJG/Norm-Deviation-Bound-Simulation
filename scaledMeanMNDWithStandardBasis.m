@@ -1,12 +1,12 @@
-function [scaledAvg] = scaledExpMNDWithStandardBasis(m, p, numSamples)
+function [scaledAvg] = scaledMeanMNDWithStandardBasis(m, p, numSamples)
 % approximate the expected norm deviation and divide by complexity
     n = floor(2/p);
-    avg = expectedNormDeviation(m, n, p, numSamples);
+    avg = meanMaxNormDeviation(m, n, p, numSamples);
     complexity = sqrt(log(n));
     scaledAvg = avg / complexity;
 end
 
-function [avg] = expectedNormDeviation(m, n, p, numSamples)
+function [avg] = meanMaxNormDeviation(m, n, p, numSamples)
 % approximate the expected norm deviation by the average devation of
 % numSamples samples
     sum = 0;

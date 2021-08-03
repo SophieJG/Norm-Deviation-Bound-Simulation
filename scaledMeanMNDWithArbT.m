@@ -1,7 +1,7 @@
-function [scaledAvg] = scaledExpMNDWithArbT(m, p, numSamples, T)
+function [scaledAvg] = scaledMeanMNDWithArbT(m, p, numSamples, T)
 % approximate the expected norm deviation and divide by complexity
 % T is a set of k vectors in R^n, represented by an n x k matrix
-    avg = expectedNormDeviation(m, p, numSamples, T);
+    avg = meanMaxNormDeviation(m, p, numSamples, T);
     complexity = computeComplexity(T, numSamples);
     scaledAvg = avg / complexity;
 end
@@ -27,7 +27,7 @@ function [maxDot] = maxGaussianInnerProduct(T)
     end
 end
 
-function [avg] = expectedNormDeviation(m, p, numSamples, T)
+function [avg] = meanMaxNormDeviation(m, p, numSamples, T)
 % approximate the expected norm deviation by the average devation of
 % numSamples samples
     sum = 0;

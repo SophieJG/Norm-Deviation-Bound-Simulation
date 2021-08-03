@@ -17,8 +17,9 @@ K = arrayfun(KFn, p);
 % compute K*sqrt(log K) for each value of p
 KsqrtlogK = arrayfun(KsqrtlogKFn, p);
 
-% compute the expected max norm deviation for each value of p
-deviationFn = @(x) scaledExpectedNormDeviation(ceil(KsqrtlogKFn(x)^2), x, SAMPLES);
+% sample a mean max norm deviation for each value of p and divide by
+% complexity
+deviationFn = @(x) scaledMeanMNDWithStandardBasis(ceil(KsqrtlogKFn(x)^2), x, SAMPLES);
 deviation = arrayfun(deviationFn, p);
 
 % plot the deviation and K*sqrt(log K) for reference
