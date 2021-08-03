@@ -1,6 +1,6 @@
 clc;
 
-NUM_POINTS = 50;
+NUM_POINTS = 10;
 RIGHT_ENDPOINT = 0.1;
 SAMPLES = 1000;
 
@@ -23,7 +23,7 @@ deviationFn = @(x) scaledMeanMNDWithStandardBasis(ceil(KsqrtlogKFn(x)^2), x, SAM
 deviation = arrayfun(deviationFn, p);
 
 % Compute least squares constant
-scale = inv(KsqrtlogK*transpose(KsqrtlogK))*KsqrtlogK*transpose(deviation);
+scale = leastSquares(transpose(KsqrtlogK), transpose(deviation));
 
 % plot the deviation and K*sqrt(log K) for reference
 
