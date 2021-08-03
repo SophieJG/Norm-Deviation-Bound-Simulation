@@ -22,9 +22,12 @@ KsqrtlogK = arrayfun(KsqrtlogKFn, p);
 deviationFn = @(x) scaledMeanMNDWithStandardBasis(ceil(KsqrtlogKFn(x)^2), x, SAMPLES);
 deviation = arrayfun(deviationFn, p);
 
+% Compute least squares constant
+scale = inv(KsqrtlogK*transpose(KsqrtlogK))*KsqrtlogK*transpose(deviation);
+
 % plot the deviation and K*sqrt(log K) for reference
 
 prefixEndpoint =  strrep(string(RIGHT_ENDPOINT), '.', ',');
 prefix = NUM_POINTS + "_pts_" + SAMPLES + "_samples_" + prefixEndpoint + "_endpoint";
 
-generatePlots(p, K, KsqrtlogK, deviation, prefix, true);
+generatePlots(p, K, scale*KsqrtlogK, deviation, prefix, true);
