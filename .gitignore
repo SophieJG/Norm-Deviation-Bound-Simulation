@@ -1,2 +1,4 @@
 **/*.asv
 plots/**
+data/**
+!defaultSimulationData.csv

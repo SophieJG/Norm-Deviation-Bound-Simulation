@@ -1,7 +1,7 @@
 clc;
 
-NUM_POINTS = 100;
-RIGHT_ENDPOINT = 0.1;
+NUM_POINTS = 10;
+RIGHT_ENDPOINT = 0.6;
 SAMPLES = 100;
 
 % demonstrate that the upper bound Ksqrt(logK)*complexity is tight
@@ -19,18 +19,18 @@ KsqrtlogK = arrayfun(KsqrtlogKFn, p);
 
 % sample a mean max norm deviation for each value of p and divide by
 % complexity
-deviationFn = @(x) scaledMeanMNDWithStandardBasis(ceil(KsqrtlogKFn(x)^2), x, SAMPLES);
-deviation = arrayfun(deviationFn, p);
+MNDFn = @(x) scaledMeanMNDWithStandardBasis(ceil(KsqrtlogKFn(x)^2), x, SAMPLES);
+MND = arrayfun(MNDFn, p);
 
-T = table(p.',K.', KsqrtlogK.', deviation.', 'VariableNames', {'p','K','KsqrtlogK','MND'});
-writetable(T, 'defaultSimulationData.csv');
+T = table(p.',K.', KsqrtlogK.', MND.', 'VariableNames', {'p','K','KsqrtlogK','MND'});
+writetable(T, 'data/simulationData.csv');
 
 % Compute least squares constant
-scale = leastSquares(transpose(KsqrtlogK), transpose(deviation));
+scale = leastSquares(transpose(KsqrtlogK), transpose(MND));
 
-% plot the deviation and K*sqrt(log K) for reference
+% plot MND and K*sqrt(log K) for reference
 
 prefixEndpoint =  strrep(string(RIGHT_ENDPOINT), '.', ',');
 prefix = NUM_POINTS + "_pts_" + SAMPLES + "_samples_" + prefixEndpoint + "_endpoint";
 
-generatePlots(p, K, scale*KsqrtlogK, deviation, prefix, true);
+generatePlots(p, K, scale*KsqrtlogK, MND, prefix, true);

@@ -1,11 +1,12 @@
 clc;
 
 FILE_NAME = 'simulationPlot';
-DATA_FILE = 'Regression/simulationData.csv';
+DATA_DIRECTORY = 'data/';
+DATA_FILE = DATA_DIRECTORY + 'defaultSimulationData.csv';
 
 T = readtable(DATA_FILE);
 
 % Compute least squares constant
-scale = leastSquares(T.KsqrtlogK, T.deviation);
+scale = leastSquares(T.KsqrtlogK, T.MND);
 
-generatePlots(T.p, T.K, scale*T.KsqrtlogK, T.deviation, FILE_NAME, true);
+generatePlots(T.p, T.K, scale*T.KsqrtlogK, T.MND, FILE_NAME, true);
