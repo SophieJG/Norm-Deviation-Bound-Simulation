@@ -1,8 +1,8 @@
 clc;
 
-NUM_POINTS = 10;
+NUM_POINTS = 100;
 RIGHT_ENDPOINT = 0.1;
-SAMPLES = 1000;
+SAMPLES = 100;
 
 % demonstrate that the upper bound Ksqrt(logK)*complexity is tight
 
@@ -21,6 +21,9 @@ KsqrtlogK = arrayfun(KsqrtlogKFn, p);
 % complexity
 deviationFn = @(x) scaledMeanMNDWithStandardBasis(ceil(KsqrtlogKFn(x)^2), x, SAMPLES);
 deviation = arrayfun(deviationFn, p);
+
+T = table(p.',K.', KsqrtlogK.', deviation.', 'VariableNames', {'p','K','KsqrtlogK','MND'});
+writetable(T, 'defaultSimulationData.csv');
 
 % Compute least squares constant
 scale = leastSquares(transpose(KsqrtlogK), transpose(deviation));
