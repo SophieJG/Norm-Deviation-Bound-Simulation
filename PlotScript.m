@@ -1,12 +1,12 @@
 clc;
 
-FILE_NAME = 'simulationPlot';
-DATA_DIRECTORY = 'data/';
-DATA_FILE = DATA_DIRECTORY + 'defaultSimulationData.csv';
+LOG_LOG = true;
+FILE_NAME = "simulationPlot";
+DATA_FILE = "defaultSimulationData.mat";
 
-T = readtable(DATA_FILE);
+T = load("data/" + DATA_FILE, 'p', 'K', 'KsqrtlogK', 'MND');
 
 % Compute least squares constant
-scale = leastSquares(T.KsqrtlogK, T.MND);
+scale = leastSquares(transpose(KsqrtlogK), transpose(MND));
 
-generatePlots(T.p, T.K, scale*T.KsqrtlogK, T.MND, FILE_NAME, true);
+generatePlots(p, K, scale*KsqrtlogK, MND, FILE_NAME, LOG_LOG);

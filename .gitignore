@@ -1,4 +1,4 @@
 **/*.asv
 plots/**
 data/**
-!defaultSimulationData.csv
+!defaultSimulationData.mat

@@ -4,6 +4,7 @@ function [coeff] = leastSquares(design,response)
 %   should be the number of predictor variables; correspondingly, the
 %   number of rows is the sample size.
 
-coeff = inv(transpose(design)*design)*transpose(design)*response;
+coeff = ((transpose(design)*design)\transpose(design))*response;
+disp(coeff)
 end
 
