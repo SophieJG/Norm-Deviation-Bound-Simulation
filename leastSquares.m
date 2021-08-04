@@ -5,6 +5,5 @@ function [coeff] = leastSquares(design,response)
 %   number of rows is the sample size.
 
 coeff = ((transpose(design)*design)\transpose(design))*response;
-disp(coeff)
 end
 
