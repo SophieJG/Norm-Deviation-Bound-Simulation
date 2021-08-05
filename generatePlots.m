@@ -10,7 +10,7 @@ function generatePlots(p, K, KsqrtlogK, MND, fileName, loglogPlot)
         
         loglog(K, KsqrtlogK, "b", K, MND, "g");
         xlabel('log K');
-        legend('log (c x K x sqrt(log K))','log(MND(K))');
+        legend('log(c x K x sqrt(log K))','log(MND(K))');
         savefig(prefix + "_K_loglog.fig");
     else
         plot(p, KsqrtlogK, "b", p, MND, "g");
