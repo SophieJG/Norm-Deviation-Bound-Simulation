@@ -4,13 +4,13 @@ function generatePlots(p, K, KsqrtlogK, MND, fileName, loglogPlot)
     
     if loglogPlot
         loglog(p, KsqrtlogK, "b", p, MND, "g");
-        xlabel('log p');
-        legend('log(c x K(p) x sqrt(log K(p)))','log(MND(p))');
+        xlabel('p');
+        legend('c x K(p) x sqrt(log K(p))','MND(p)');
         savefig(prefix + "_p_loglog.fig");
         
         loglog(K, KsqrtlogK, "b", K, MND, "g");
-        xlabel('log K');
-        legend('log(c x K x sqrt(log K))','log(MND(K))');
+        xlabel('K');
+        legend('c x K x sqrt(log K)','MND(K)');
         savefig(prefix + "_K_loglog.fig");
     else
         plot(p, KsqrtlogK, "b", p, MND, "g");
