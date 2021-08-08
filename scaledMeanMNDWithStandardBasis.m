@@ -1,6 +1,6 @@
 function [scaledAvg] = scaledMeanMNDWithStandardBasis(m, p, numSamples)
 % approximate the expected norm deviation and divide by complexity
-    n = floor(2/p);
+    n = ceil(1/p);
     avg = meanMaxNormDeviation(m, n, p, numSamples);
     complexity = sqrt(log(n));
     scaledAvg = avg / complexity;
