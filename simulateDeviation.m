@@ -16,7 +16,7 @@ function [p, K, KsqrtlogK, MND] = generateData(numPoints, rightEndpoint, samples
     % generate a vector of parameters for the Bernoullis
     p = linspace(rightEndpoint/numPoints, rightEndpoint, numPoints);
 
-    KFn = @(x) 1/sqrt(x*log(1+1/x));
+    KFn = @(x) 1/sqrt(x*log(1+(1/x)));
     KsqrtlogKFn = @(x) KFn(x) * sqrt(log(KFn(x)));
 
     K = arrayfun(KFn, p);
