@@ -28,7 +28,7 @@ function [maxDot] = maxGaussianInnerProduct(T)
 end
 
 function [avg] = meanMaxNormDeviation(m, p, numSamples, T)
-% approximate the expected norm deviation by the average devation of
+% approximate the expected norm deviation by the average deviation of
 % numSamples samples
     sum = 0;
     for i=1:numSamples
@@ -42,7 +42,8 @@ function [maxDev] = maxNormDeviation(m, p, T)
 % deviation for each standard basis vector in R^n
     maxDev = 0;
     [n, k] = size(T);
-    A = scaledBernoullis(m, n, p);
+    signs = randi([0 1], m,n).*2 - 1;
+    A = signs.*scaledBernoullis(m, n, p);
     for i = 1:k
         x = T(:, i);
         Ax = A*x;

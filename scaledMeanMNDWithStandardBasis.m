@@ -7,7 +7,7 @@ function [scaledAvg] = scaledMeanMNDWithStandardBasis(m, p, numSamples)
 end
 
 function [avg] = meanMaxNormDeviation(m, n, p, numSamples)
-% approximate the expected norm deviation by the average devation of
+% approximate the expected norm deviation by the average deviation of
 % numSamples samples
     sum = 0;
     for i=1:numSamples
