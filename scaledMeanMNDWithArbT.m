@@ -42,7 +42,7 @@ function [maxDev] = maxNormDeviation(m, p, T)
 % deviation for each standard basis vector in R^n
     maxDev = 0;
     [n, k] = size(T);
-    signs = randi([0 1], m,n).*2 - 1;
+    signs = randi([0 1], m, n).*2 - 1;
     A = signs.*scaledBernoullis(m, n, p);
     for i = 1:k
         x = T(:, i);
