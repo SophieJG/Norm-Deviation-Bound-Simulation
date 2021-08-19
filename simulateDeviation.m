@@ -5,11 +5,8 @@ function simulateDeviation(numPoints, rightEndpoint, samples, resultFileName, us
     % save the data
     save("data/" + resultFileName, 'p', 'K', 'KsqrtlogK', 'MND');
     
-    % compute least squares constant (used to scale KsqrtlogK)
-    scale = leastSquares(transpose(KsqrtlogK), transpose(MND));
-    
     % plot the data
-    plotData(p, K, KsqrtlogK, MND, scale, numPoints, rightEndpoint, samples);
+    plotData(p, K, KsqrtlogK, MND, numPoints, rightEndpoint, samples);
 end
 
 function [p, K, KsqrtlogK, MND] = generateData(numPoints, rightEndpoint, samples, useCustomSet, customSetFile)
@@ -35,10 +32,10 @@ function [p, K, KsqrtlogK, MND] = generateData(numPoints, rightEndpoint, samples
     MND = arrayfun(MNDFn, p); 
 end
 
-function plotData(p, K, KsqrtlogK, MND, scale, numPoints, rightEndpoint, samples)
+function plotData(p, K, KsqrtlogK, MND, numPoints, rightEndpoint, samples)
     % plot MND and K*sqrt(log K) for reference
     prefixEndpoint =  strrep(string(rightEndpoint), '.', ',');
     prefix = numPoints + "_pts_" + samples + "_samples_" + prefixEndpoint + "_endpoint";
 
-    generatePlots(p, K, scale*KsqrtlogK, MND, prefix, true);
+    generatePlots(p, K, KsqrtlogK, MND, prefix, true);
 end
