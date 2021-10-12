@@ -9,22 +9,26 @@ function generatePlots(p, K, KsqrtlogK, MND, fileName, loglogPlot)
     if loglogPlot
         loglog(p, MND, "r", p, scaledKsqrtlogK, "b--", p, scaledK, "b:");
         xlabel('p');
-        legend('MND(p)', 'c x K(p) x sqrt(log K(p))', 'c'' x K(p)');
+        legend('$\textit{MND}(p)$', '$c K(p) \sqrt{\log K(p)}$', '$c'' K(p)$', ...
+            'Interpreter','latex', 'location', 'northeast');
         savefig(prefix + "_p_loglog.fig");
         
         loglog(K, MND, "r",K, scaledKsqrtlogK, "b--", K, scaledK, "b:");
-        xlabel('K');
-        legend('MND(K)','c x K x sqrt(log K)', 'c'' x K');
+        xlabel('$K$', 'Interpreter','latex');
+        legend('$\textit{MND}_K$','$c K \sqrt{\log K}$', '$c'' K$', ...
+            'Interpreter','latex', 'location', 'northwest');
         savefig(prefix + "_K_loglog.fig");
     else
         plot(p, MND, "r", p, scaledKsqrtlogK, "b--", p, scaledK, "b:");
         xlabel('p');
-        legend('MND(p)','c x K(p) x sqrt(log K(p))','c'' x K(p)');
+        legend('$\textit{MND}(p)$','$c K(p) \sqrt{\log K(p)}$','$c'' K(p)$',...
+            'Interpreter','latex', 'location', 'northeast');
         savefig(prefix + "_p.fig");
         
         plot(K, MND, "r", K, scaledKsqrtlogK, "b--", K, scaledK, "b:");
         xlabel('K');
-        legend('MND(K)','c x K x sqrt(log K)','c'' x K');
+        legend('$\textit{MND}_K$','$c K \sqrt{\log K}$','$c'' K$', ...
+            'Interpreter','latex', 'location', 'northwest');
         savefig(prefix + "_K.fig");
     end
 end

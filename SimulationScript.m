@@ -1,7 +1,7 @@
 clc;
 
 NUM_POINTS = 100;
-RIGHT_ENDPOINT = 0.1;
+RIGHT_ENDPOINT = 0.05;
 SAMPLES = 100;
 RESULT_FILE = "simulationData";
 
